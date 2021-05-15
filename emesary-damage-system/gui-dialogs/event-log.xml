@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <PropertyList>
-	<name>flightlog</name>
-	<modal>false</modal>
-	<layout>vbox</layout>
-	<draggable>true</draggable>
+    <name>flightlog</name>
+    <modal>false</modal>
+    <layout>vbox</layout>
+    <draggable>true</draggable>
 	<resizable>true</resizable>
 
 	<group>
 		<layout>hbox</layout>
 		<empty><stretch>1</stretch></empty>
 
-		<text>
+        <text>
 			<label>Combat event log</label>
 		</text>
 
@@ -54,19 +54,21 @@
 		<legend>Refresh</legend>
 		<binding>
 			<command>nasal</command>
-			<script><![CDATA[
-				var str = "";
-				if (getprop("velocities/groundspeed-kt") < 10) {
-					var buffer = damage.damageLog.get_buffer();
+			<script>
+                <![CDATA[
+                    var str = "";
+                    if (getprop("velocities/groundspeed-kt") < 10) {
+                        var buffer = damage.damageLog.get_buffer();
 
-					foreach(entry; buffer) {
-						str = str~""~entry.time~" "~entry.message~"\n";
-					}
-				} else {
-					str = "The aircraft must be still to read the combat event log.";
-				}
-				setprop("sim/gui/dialogs/flightlog/buffer", str);
-				]]></script>
+                        foreach(entry; buffer) {
+                            str = str~""~entry.time~" "~entry.message~"\n";
+                        }
+                    } else {
+                        str = "The aircraft must be still to read the combat event log.";
+                    }
+                    setprop("sim/gui/dialogs/flightlog/buffer", str);
+				]]>
+            </script>
 		</binding>
 	</button>
 
@@ -81,7 +83,7 @@
 		<valign>fill</valign>
 		<stretch>true</stretch>
 
-			<!-- dimensions -->
+		<!-- dimensions -->
 		<pref-width>500</pref-width>
 		<pref-height>500</pref-height>
 
